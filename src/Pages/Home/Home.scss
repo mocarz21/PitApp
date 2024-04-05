@@ -1,0 +1,48 @@
+@import '../../settings.scss';
+
+.home-module{
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%; 
+  min-height: 100%;
+  overflow: hidden;
+  z-index: -1;
+
+  video{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    background-size: cover;
+    filter: brightness(45%);
+  }
+  .main-box{
+    font-family: $mainFont;
+    color: white;
+    z-index: 2;
+    position: relative;
+    top: 150px;
+    .title{
+      width: 60%;
+    }
+    .description{
+      width: 70%;
+    }
+  }
+}
+
+//Efekt przejścia
+
+@keyframes fadeOutAndIn {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; } /* Zmniejszona przezroczystość w połowie drogi */
+  100% { opacity: 1; }
+}
+
+.fadeOutAndIn {
+  animation: fadeOutAndIn 2s ease;
+}

@@ -1,0 +1,65 @@
+@import '../../../settings.scss';
+
+.nav-bar-module{
+  font-family: $mainFont;
+  margin: 0;
+  padding: 0;
+  height: 65px;
+  width:auto;
+  .main{
+    background-color: $navBarColorOne;
+    border-radius:0 0 10px 10px;
+    z-index: 99;
+    position: relative;
+    box-shadow: 0 -5px 40px -5px rgba(0, 0, 0, 0.5);
+  }
+
+  .login{
+    z-index: 100;
+    position: absolute;
+    top:0;
+    right: 4px;
+  }
+  .logo{
+
+    .logo-img{
+      width: 60px;
+      height: auto;    
+    }
+  }
+  .lists{
+    
+    margin-top: -8px;
+    display: none;
+    height: 50px;
+    background-color:$navBarColorTwo ;
+    z-index: 5;
+
+    .szkolenia-list, .firma-list, .kontakt-list{
+      display: none;
+      justify-content: center;
+      
+      ul{
+        margin: 0;
+        display: flex;
+        list-style: none;
+        width: 60%;
+        justify-content: space-around;
+
+        li{
+          display: flex;
+          justify-content: center; /* Centrowanie poziome */
+          align-items: center;
+        }
+        
+      } 
+    }
+    .active{
+      display:flex;
+    }
+  }
+  .active{
+    display:flex;
+  }
+
+}
