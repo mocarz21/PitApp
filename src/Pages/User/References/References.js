@@ -1,8 +1,12 @@
-import './References.scss'
+import './References.scss';
+import { Table } from '../../Modules/Table/Table'
 
 export const References = () =>{
 
   return(
-    <h1>Referencje</h1>
+    <div>
+      <h1>Referencje</h1>
+      <Table/>
+    </div>
   )
 }

@@ -1,0 +1,3 @@
+Problem z instalacją sharp - mozna rozwiązać za pomocą - 
+yarn add sharp --ignore-engines
+Wymaga też nowszej wersji Node.js z tego co sobie przypominam powyzej wersji 18.17
