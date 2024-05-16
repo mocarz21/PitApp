@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 import {
   MRT_GlobalFilterTextInput,
   MRT_ToggleFiltersButton,
@@ -7,140 +7,75 @@ import {
 } from 'mantine-react-table';
 import { Box, Button, Flex, Menu, Text, Title } from '@mantine/core';
 import { IconUserCircle, IconSend } from '@tabler/icons-react';
-//import { data } from './data';
+import { useReferences } from '../../../../hooks/API/useReferences';
 
 export const TableData = () => {
-
-  const data = [
-    {
-      nazwa: 'Josephhhhh',
-      projekt: 'przyszłosc',
-      od: '2022-12-28T20:59:36.586Z' ,
-      do: '2024-12-28T20:59:36.586Z',
-      firma: "closed",
-      beneficjent: 'osoby bezdomne',
-      jobTitle: 'szsz',
-      startDate: '2022-12-28T20:59:36.586Z',
-      skills: ['Excel', 'Word'],
-      avatar:
-        'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/528.jpg',
-    },
-    {
-      nazwa: 'Joseph',
-      projekt: 'przyszłosc',
-      od: '2021-12-28T20:59:36.586Z' ,
-      do: '2023-12-28T20:59:36.586Z',
-      firma: "open",
-      beneficjent: 'osoby bezdomne',
-      jobTitle: 'szsz',
-      skills: [ 'Word'],
-      avatar:
-        'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/528.jpg',
-    }
-  ]
-
-
-
-
-
-
-
-
+  const { payload, loading } = useReferences();
+  const data = useMemo(() => (payload ? payload.data : []), [payload]); // Upewnij się, że dane są dostępne i pamiętaj o memoizacji
 
   const columns = useMemo(
     () => [
       {
-        id: 'employee', //id used to define `group` column
+        id: 'employee',
         header: 'Referencje',
         columns: [
           {
-            accessorFn: (data) => `${data.nazwa}`, //accessorFn used to join multiple data into a single cell
-            id: 'name', //id is still required when using accessorFn instead of accessorKey
+            accessorFn: (row) => row.nazwa,
+            id: 'name',
             header: 'Nazwa',
             size: 250,
             filterVariant: 'autocomplete',
-            Cell: ({ renderedCellValue, row }) => (
-              <Box
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '16px',
-                }}
-              >
-                <span>{renderedCellValue}</span> 
+            Cell: ({ renderedCellValue }) => (
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                <span>{renderedCellValue}</span>
               </Box>
             ),
           },
           {
-            accessorFn: (row) => `${row.projekt}`, //accessorFn used to join multiple data into a single cell
-            id: 'project-name', //id is still required when using accessorFn instead of accessorKey
+            accessorFn: (row) => row.projekt,
+            id: 'project-name',
             header: 'Nazwa Projektu',
             size: 250,
             filterVariant: 'autocomplete',
-            Cell: ({ renderedCellValue, row }) => (
-              <Box
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '16px',
-                }}
-              >
-                <span>{renderedCellValue}</span> 
+            Cell: ({ renderedCellValue }) => (
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                <span>{renderedCellValue}</span>
               </Box>
             ),
           },
           {
-            accessorFn: (row) => `${row.firma}`, //accessorFn used to join multiple data into a single cell
-            id: 'zamawiajacy', //id is still required when using accessorFn instead of accessorKey
+            accessorFn: (row) => row.firma,
+            id: 'zamawiajacy',
             header: 'Zamawiający',
             size: 250,
             filterVariant: 'autocomplete',
-            Cell: ({ renderedCellValue, row }) => (
-              <Box
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '16px',
-                }}
-              >
-                <span>{renderedCellValue}</span> 
+            Cell: ({ renderedCellValue }) => (
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                <span>{renderedCellValue}</span>
               </Box>
             ),
           },
           {
-            accessorFn: (row) => `${row.skills}`, //accessorFn used to join multiple data into a single cell
-            id: 'skills', //id is still required when using accessorFn instead of accessorKey
+            accessorFn: (row) => row.tematyka,
+            id: 'tematyka',
             header: 'Tematyka',
             size: 250,
             filterVariant: 'autocomplete',
-            Cell: ({ renderedCellValue, row }) => (
-              <Box
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '16px',
-                }}
-              >
-                <span>{renderedCellValue}</span> 
+            Cell: ({ renderedCellValue }) => (
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                <span>{renderedCellValue}</span>
               </Box>
             ),
           },
-          
           {
-            accessorFn: (row) => `${row.firma}`, //accessorFn used to join multiple data into a single cell
-            id: 'beneficiary', //id is still required when using accessorFn instead of accessorKey
+            accessorFn: (row) => row.beneficjent,
+            id: 'beneficiary',
             header: 'Beneficjenci',
             size: 250,
             filterVariant: 'multi-select',
-            Cell: ({ renderedCellValue, row }) => (
-              <Box
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '16px',
-                }}
-              >
-                <span>{renderedCellValue}</span> 
+            Cell: ({ renderedCellValue }) => (
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                <span>{renderedCellValue}</span>
               </Box>
             ),
           },
@@ -151,44 +86,34 @@ export const TableData = () => {
         header: 'Data',
         columns: [
           {
-            accessorFn: (row) => {
-              //convert to Date for sorting and filtering
-              const sDay = new Date(row.od);
-              sDay.setHours(0, 0, 0, 0); // remove time from date (useful if filter by equals exact date)
-              return sDay;
-            },
+            accessorFn: (row) => new Date(row.od),
             id: 'startDate',
             header: 'Data od',
             filterVariant: 'date-range',
             sortingFn: 'datetime',
-            enableColumnFilterModes: false, //keep this as only date-range filter with between inclusive filterFn
-            Cell: ({ cell }) => cell.getValue()?.toLocaleDateString(), //render Date as a string
-            Header: ({ column }) => <em>{column.columnDef.header}</em>, //custom header markup
+            enableColumnFilterModes: false,
+            Cell: ({ cell }) => cell.getValue()?.toLocaleDateString(),
+            Header: ({ column }) => <em>{column.columnDef.header}</em>,
           },
           {
-            accessorFn: (row) => {
-              //convert to Date for sorting and filtering
-              const sDay = new Date(row.do);
-              sDay.setHours(0, 0, 0, 0); // remove time from date (useful if filter by equals exact date)
-              return sDay;
-            },
+            accessorFn: (row) => new Date(row.do),
             id: 'endDate',
             header: 'Data do',
             filterVariant: 'date-range',
             sortingFn: 'datetime',
-            enableColumnFilterModes: false, //keep this as only date-range filter with between inclusive filterFn
-            Cell: ({ cell }) => cell.getValue()?.toLocaleDateString(), //render Date as a string
-            Header: ({ column }) => <em>{column.columnDef.header}</em>, //custom header markup
+            enableColumnFilterModes: false,
+            Cell: ({ cell }) => cell.getValue()?.toLocaleDateString(),
+            Header: ({ column }) => <em>{column.columnDef.header}</em>,
           },
         ],
       },
     ],
-    [],
+    []
   );
 
   const table = useMantineReactTable({
     columns,
-    data, //must be memoized or stable (useState, useMemo, defined outside of this component, etc.)
+    data,
     enableColumnFilterModes: true,
     enableColumnOrdering: true,
     enableFacetedValues: true,
@@ -224,8 +149,8 @@ export const TableData = () => {
         />
         <Box sx={{ textAlign: 'center' }}>
           <Title>Opis:</Title>
-          <Text>&quot;{row.original.projekt}&quot;</Text>
-          <Text>&quot;{row.original.skills.join(', ')}&quot;</Text>
+          <Text>{row.original.projekt}</Text>
+          <Text>{row.original.tematyka}</Text>
         </Box>
       </Box>
     ),
@@ -257,7 +182,6 @@ export const TableData = () => {
       return (
         <Flex p="md" justify="space-between">
           <Flex gap="xs">
-            {/* import MRT sub-components */}
             <MRT_GlobalFilterTextInput table={table} />
             <MRT_ToggleFiltersButton table={table} />
           </Flex>
@@ -292,6 +216,7 @@ export const TableData = () => {
     },
   });
 
+  if (loading) return <h1>Loading...</h1>;
+
   return <MantineReactTable table={table} />;
 };
-

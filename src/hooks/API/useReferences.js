@@ -1,4 +1,4 @@
-import { useQuery } from '../../src/Fetch/useQuery'
+import { useQuery } from '../../Fetch/useQuery';
 
 export const useReferences = (referencesId) => {
   const endpoint = referencesId ? `references/${referencesId}` : 'references';
