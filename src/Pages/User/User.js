@@ -10,7 +10,7 @@ export const User = () =>{
       <UserNavBar/>
       <Routes>
           <Route path="dyplomy" element={<Diplomas />} />
-          <Route path="referencje" element={<References />} /> 
+          <Route path="referencje/*" element={<References />} /> 
       </Routes>
     </div>
   )

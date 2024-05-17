@@ -8,8 +8,11 @@ import {
 import { Box, Button, Flex, Menu, Text, Title } from '@mantine/core';
 import { IconUserCircle, IconSend } from '@tabler/icons-react';
 import { useReferences } from '../../../../hooks/API/useReferences';
+import { useNavigate } from 'react-router-dom';
 
 export const TableData = () => {
+
+  const navigate = useNavigate();
   const { payload, loading } = useReferences();
   const data = useMemo(() => (payload ? payload.data : []), [payload]); // Upewnij się, że dane są dostępne i pamiętaj o memoizacji
 
@@ -174,9 +177,7 @@ export const TableData = () => {
       };
 
       const handleContact = () => {
-        table.getSelectedRowModel().flatRows.map((row) => {
-          alert('contact ' + row.getValue('name'));
-        });
+        navigate('/user/referencje/AddReferencje');
       };
 
       return (
@@ -192,7 +193,7 @@ export const TableData = () => {
               onClick={handleDeactivate}
               variant="filled"
             >
-              Deactivate
+              Pobierz
             </Button>
             <Button
               color="green"
@@ -200,15 +201,14 @@ export const TableData = () => {
               onClick={handleActivate}
               variant="filled"
             >
-              Activate
+              Do Excel
             </Button>
             <Button
               color="blue"
-              disabled={!table.getIsSomeRowsSelected()}
               onClick={handleContact}
               variant="filled"
             >
-              Contact
+              Dodaj
             </Button>
           </Flex>
         </Flex>

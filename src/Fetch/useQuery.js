@@ -37,7 +37,6 @@ export const useQuery = ({ endpoint, query, isLazy = false }) => {
       );
 
       const textResponse = await response.text();
-      console.log('Raw response:', textResponse);
 
       const contentType = response.headers.get('content-type');
       if (!contentType || !contentType.includes('application/json')) {
@@ -47,7 +46,6 @@ export const useQuery = ({ endpoint, query, isLazy = false }) => {
       const res = JSON.parse(textResponse);
       setPayload(res);
     } catch (error) {
-      console.error('Fetch error:', error);
       setError(error);
     } finally {
       setLoading(false);

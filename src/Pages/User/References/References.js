@@ -2,13 +2,14 @@ import './References.scss';
 import { Table } from '../../Modules/Table/Table'
 import ReferencesProvider from '../../../providers/ReferencesProviders'
 import { useReferences } from '../../../hooks/API/useReferences'
+import { Route, Routes } from 'react-router-dom';
+import { AddReferences } from '../../User/References/AddReferences/AddReferences';
 
 export const References = () =>{
 
   const { loading, payload, error, refetch } = useReferences();
 
   // Logowanie danych dla debugowania
-  console.log('ReferencesComponent - payload:', payload);
 
   if (loading) {
     return <p>Loading...</p>;
@@ -22,7 +23,10 @@ export const References = () =>{
     <ReferencesProvider>
       <div>
         <h1>Referencje</h1>
-        <Table/>
+        <Routes>
+          <Route path="AddReferencje" element={<AddReferences />} />
+          <Route path="/" element={<Table />} />
+        </Routes>
       </div>
     </ReferencesProvider>
   )

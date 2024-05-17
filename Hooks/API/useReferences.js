@@ -5,8 +5,6 @@ export const useReferences = (referencesId) => {
 
   const { loading, payload, error, refetch } = useQuery({ endpoint });
 
-  console.log('useReferences - payload:', payload); // Logowanie danych
-
   return {
     loading,
     payload,
