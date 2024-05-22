@@ -9,15 +9,17 @@ export const useReferences = (referencesId) => {
   const save = async ( body ) => {
 
     const transformedBody = {
-      nazwa_Img: body.imgName,
-      tytul: body.title,
-      autor: body.author,
-      rok_wydania: body.publishYear,
-      kategoria: body.category,
-      opis: body.description
+      nazwa: body.name,
+      projekt: body.projectName,
+      od: body.startDate,
+      do: body.endDate,
+      firma: body.company,
+      tematyka: body.thema,
+      beneficjent:body.beneficiary,
+      img_name: body.imgName
     }
 
-    const data = await returnFetch({ endpoint: 'secure/books', body: transformedBody });
+    const data = await returnFetch({ endpoint: 'references', body: transformedBody });
     return data;
   };
 

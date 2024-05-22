@@ -1,9 +1,11 @@
 import { useState } from "react"
+import { useReferences} from '../../../../hooks/API/useReferences'
 import './AddReferences.scss'
 
-
-
 export const AddReferences = () => {
+
+  const { save } = useReferences()
+  
   const [imagePreview, setImagePreview] = useState(null);
   const [imgName , setImgName] = useState()
   const [name , setName] = useState()
@@ -14,17 +16,13 @@ export const AddReferences = () => {
   const [startDate , setStartDate] = useState()
   const [endDate , setEndDate] = useState()
 
-  let data 
 
-
-  
   const handleSubmit = (event) => {
     event.preventDefault();
-    data={name, projectName, company, thema, beneficiary, startDate, endDate }
-    console.log(imgName)
+    let body={name, projectName, company, thema, beneficiary, startDate, endDate, imgName }
+    console.log(body)
+    save(body)
   };
-
-
 
   const handleInputFile=(e)=>{
     const file = e.target.files[0];
@@ -42,7 +40,6 @@ export const AddReferences = () => {
     <div className="container add-references">
       <div className="form-header">
         <h1>Add References</h1>
-
       </div>
       <div className="form-content">
         <div className="form-section">

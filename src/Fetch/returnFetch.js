@@ -6,14 +6,14 @@ export const returnFetch = async ({ endpoint, body }) => {
         ...fetchSetting,
         headers: {
             ...fetchSetting.headers,
-            authorization: `Bearer ${sessionStorage.getItem('access-token')}`,
+            // authorization: `Bearer ${sessionStorage.getItem('access-token')}`,
         },
         body:body ? JSON.stringify(body) : "",
     })
         .then(response => response.json())
         .then(res => {
             if(res && res.status && res.message && !res.message.includes("ERROR-LOGS: ")) {
-                document.showAlert(res.message, res.status);
+                //document.showAlert(res.message, res.status);
             }
 
             return res
@@ -21,7 +21,7 @@ export const returnFetch = async ({ endpoint, body }) => {
     
         const { data, status, message } = await output;
         if (status && status === "error" && message) {
-            document.showAlert(message, status);
+            //document.showAlert(message, status);
         }
 
         return data;
